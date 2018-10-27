@@ -1,9 +1,9 @@
-import controller.ImportServiceCsv;
-import controller.ImportServiceSqlite;
 import controller.PreRead;
-import logger.Logger;
+import dao.ImportServiceDao;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.Scanner;
 
 public class MainApp {
 
@@ -14,22 +14,25 @@ public class MainApp {
         PreRead preRead = (PreRead) context.getBean("preRead");
         preRead.create();
 
+        System.out.println("1：csv\n2：sqlite\n3: csv & sqlite\n选择数据源（输入数字）：");
 
-        //从csv数据源导入数据
-        ImportServiceCsv serviceCsv = (ImportServiceCsv) context.getBean("serviceCsv");
-        long time1 = System.currentTimeMillis();
-        serviceCsv.readData();
-        System.out.println("耗时：" + (System.currentTimeMillis() - time1) + "ms");
-        System.out.println("共读入" + Logger.getInsertCount() + "条数据！");
-        System.out.println(Logger.getDupCount() + "条重复数据读入失败！");
-        Logger.reset();
-
-        //从sqlite数据源导入数据
-        ImportServiceSqlite serviceSqlite = (ImportServiceSqlite) context.getBean("serviceSqlite");
-        long time2 = System.currentTimeMillis();
-        serviceSqlite.readData();
-        System.out.println("耗时：" + (System.currentTimeMillis() - time2) + "ms");
-        System.out.println("共读入" + Logger.getInsertCount() + "条数据！");
-        System.out.println(Logger.getDupCount() + "条重复数据读入失败！");
+        Scanner scanner = new Scanner(System.in);
+        String numStr = scanner.next();
+        switch (numStr.trim()) {
+            case "1":
+            case "csv": //从csv数据源导入数据
+                ((ImportServiceDao) context.getBean("serviceCsv")).readData();
+                break;
+            case "2":
+            case "sqlite": //从sqlite数据源导入数据
+                ((ImportServiceDao) context.getBean("serviceSqlite")).readData();
+            case "3":
+            case "csv & sqlite":
+                ((ImportServiceDao) context.getBean("serviceCsv")).readData();
+                ((ImportServiceDao) context.getBean("serviceSqlite")).readData();
+                break;
+            default:
+                break;
+        }
     }
 }

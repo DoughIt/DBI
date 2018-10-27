@@ -3,13 +3,10 @@ package dao;
 import logger.Logger;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.jdbc.support.rowset.SqlRowSetMetaData;
 
 import javax.sql.DataSource;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 
 public abstract class ImportServiceDao implements ImportService {
