@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--连接mysql数据库-->
+    <bean id="mysqlDataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${mysqlDriverClassName}"/>
+        <property name="url" value="${mysqlUrl}"/>
+        <property name="username" value="${mysqlUsername}"/>
+        <property name="password" value="${mysqlPassword}"/>
+    </bean>
+
+    <!--通过csv驱动获取数据源-->
+    <bean id="csvDataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${csvDriverClassName}"/>
+        <property name="url" value="${csvUrl}"/>
+    </bean>
+
+    <!--连接sqlite数据库-->
+    <bean id="sqliteDataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${sqliteDriverClassName}"/>
+        <property name="url" value="${sqliteUrl}"/>
+    </bean>
+
+    <context:component-scan base-package="controller"/>
+    <context:property-placeholder location="sql.properties,jdbc.properties"/>
+
+</beans>
