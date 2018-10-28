@@ -8,7 +8,7 @@
 
 - [x] 1、运行jar包
 > * pwd：DBI（重要） 
-> * 命令：`java -jar DBI_jar/DBI.jar` 
+> * 命令：`java -jar lib/DBI.jar` 
 > * 根据提示选择需要导入的数据源 
 > * 开始导入…… 
 

@@ -1,21 +1,22 @@
 Manifest-Version: 1.0
-Class-Path: antlr-2.7.6.jar aopalliance-1.0.jar aspectjweaver.jar cgli
- b-nodep-2.1_3.jar commons-collections-3.1.jar commons-logging-1.1.1.j
- ar commons-logging-api-1.1.jar csvjdbc-1.0-34.jar dom4j-1.6.1.jar ehc
- ache-1.2.4.jar hibernate-jpa-2.0-api-1.0.1.Final.jar hibernate3.jar j
- avassist-3.12.0.GA.jar jta-1.1.jar mysql-connector-java-5.0.8-bin.jar
-  org.springframework.aop-3.1.0.M2.jar org.springframework.asm-3.1.0.M
- 2.jar org.springframework.aspects-3.1.0.M2.jar org.springframework.be
- ans-3.1.0.M2.jar org.springframework.context-3.1.0.M2.jar org.springf
- ramework.context.support-3.1.0.M2.jar org.springframework.core-3.1.0.
- M2.jar org.springframework.expression-3.1.0.M2.jar org.springframewor
- k.instrument-3.1.0.M2.jar org.springframework.instrument.tomcat-3.1.0
- .M2.jar org.springframework.jdbc-3.1.0.M2.jar org.springframework.jms
- -3.1.0.M2.jar org.springframework.orm-3.1.0.M2.jar org.springframewor
- k.oxm-3.1.0.M2.jar org.springframework.test-3.1.0.M2.jar org.springfr
- amework.transaction-3.1.0.M2.jar org.springframework.web-3.1.0.M2.jar
-  org.springframework.web.portlet-3.1.0.M2.jar org.springframework.web
- .servlet-3.1.0.M2.jar org.springframework.web.struts-3.1.0.M2.jar slf
- 4j-api-1.6.1.jar sqlite-jdbc-3.6.20.1.jar
+Class-Path: chardet-1.0.jar jargs-1.0.jar cpdetector_1.0.10.jar antlr-
+ 2.7.6.jar aopalliance-1.0.jar aspectjweaver.jar cglib-nodep-2.1_3.jar
+  commons-collections-3.1.jar commons-logging-1.1.1.jar commons-loggin
+ g-api-1.1.jar csvjdbc-1.0-34.jar dom4j-1.6.1.jar ehcache-1.2.4.jar hi
+ bernate-jpa-2.0-api-1.0.1.Final.jar hibernate3.jar javassist-3.12.0.G
+ A.jar jta-1.1.jar mysql-connector-java-5.0.8-bin.jar org.springframew
+ ork.aop-3.1.0.M2.jar org.springframework.asm-3.1.0.M2.jar org.springf
+ ramework.aspects-3.1.0.M2.jar org.springframework.beans-3.1.0.M2.jar 
+ org.springframework.context-3.1.0.M2.jar org.springframework.context.
+ support-3.1.0.M2.jar org.springframework.core-3.1.0.M2.jar org.spring
+ framework.expression-3.1.0.M2.jar org.springframework.instrument-3.1.
+ 0.M2.jar org.springframework.instrument.tomcat-3.1.0.M2.jar org.sprin
+ gframework.jdbc-3.1.0.M2.jar org.springframework.jms-3.1.0.M2.jar org
+ .springframework.orm-3.1.0.M2.jar org.springframework.oxm-3.1.0.M2.ja
+ r org.springframework.test-3.1.0.M2.jar org.springframework.transacti
+ on-3.1.0.M2.jar org.springframework.web-3.1.0.M2.jar org.springframew
+ ork.web.portlet-3.1.0.M2.jar org.springframework.web.servlet-3.1.0.M2
+ .jar org.springframework.web.struts-3.1.0.M2.jar slf4j-api-1.6.1.jar 
+ sqlite-jdbc-3.6.20.1.jar
 Main-Class: MainApp
 

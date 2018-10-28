@@ -7,12 +7,12 @@ import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component("serviceCsv")
 public class ImportServiceCsv extends ImportServiceDao {
-    @Value("${csvDataBase}")
+    @Value("${csvdatabase}")
     private String databasePath;
 
     @Autowired
@@ -22,17 +22,17 @@ public class ImportServiceCsv extends ImportServiceDao {
     }
 
     @Override
-    protected List<String> getTables() {
-        List<String> tables = new ArrayList<>();
+    protected Map<String, String> getTablesEncode() {
+        Map<String, String> map = new HashMap<>();
         File file = new File(databasePath);
         if (file.isDirectory()) {
             File[] files = file.listFiles();
             if (files == null)
-                return tables;
+                return map;
             for (File f : files) {
-                tables.add(f.getName().substring(0, f.getName().indexOf(".csv")));
+                map.put(f.getName().substring(0, f.getName().indexOf(".csv")), Util.getFileEncode(f));
             }
         }
-        return tables;
+        return map;
     }
 }

@@ -3,11 +3,15 @@ package dao;
 import logger.Logger;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.jdbc.support.rowset.SqlRowSetMetaData;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
-import java.util.List;
+import java.sql.SQLException;
+import java.util.Map;
 
 public abstract class ImportServiceDao implements ImportService {
     protected JdbcTemplate template;
@@ -18,17 +22,27 @@ public abstract class ImportServiceDao implements ImportService {
         mysqlTemplate = new JdbcTemplate(mysqlDataSource);
     }
 
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     @Override
-    public void readData() {
-        List<String> tables = getTables();
-        for (String table : tables) {
+    public void readData(boolean dropOldTable) {
+        Map<String, String> tablesEncode = getTablesEncode();
+        for (String table : tablesEncode.keySet()) {
+            //删除原有数据表
+            if (dropOldTable)
+                dropTable(table);
+            //设置编码
+            try {
+                template.getDataSource().getConnection().setClientInfo("charset", tablesEncode.get(table));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             readTable(table);
         }
+
     }
 
     private void readTable(String table) {
         SqlRowSet res = template.queryForRowSet("SELECT * FROM " + table);
-
         SqlRowSetMetaData metaData = res.getMetaData();
 
         int length = metaData.getColumnCount();
@@ -80,6 +94,15 @@ public abstract class ImportServiceDao implements ImportService {
         createTable(createSQL.toString());
     }
 
+    private void dropTable(String table) {
+        try {
+            mysqlTemplate.update("DROP TABLE " + table);
+        } catch (Exception ignored) {
+
+        }
+
+    }
+
     private boolean update(String sql, String[] strings) {
         try {
             mysqlTemplate.update(sql, (Object[]) strings);
@@ -95,5 +118,5 @@ public abstract class ImportServiceDao implements ImportService {
         mysqlTemplate.update(sql);
     }
 
-    protected abstract List<String> getTables();
+    protected abstract Map<String, String> getTablesEncode();
 }

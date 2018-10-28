@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoggerAspect {
 
-    @Around("execution(void dao.ImportServiceDao.readData())")
+    @Around("execution(void dao.ImportServiceDao.readData(..))")
     public Object log(ProceedingJoinPoint point) throws Throwable {
         Logger.reset();
         long time1 = System.currentTimeMillis();

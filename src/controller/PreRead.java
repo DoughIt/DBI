@@ -19,6 +19,7 @@ public class PreRead {
     }
 
     public void create() {
+        template.update("SET names utf8;");
         template.batchUpdate(createSQL.split(";"));
     }
 }

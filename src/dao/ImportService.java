@@ -1,5 +1,5 @@
 package dao;
 
 public interface ImportService {
-    void readData();
+    void readData(boolean dropOldTable);
 }
